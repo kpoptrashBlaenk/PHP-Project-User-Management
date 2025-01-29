@@ -2,6 +2,7 @@
 
 use Core\Container;
 use Core\Database;
+use Core\App;
 
 // Initiate container
 $container = new Container();
@@ -13,3 +14,6 @@ $container->bind(Database::class, function (): Database {
 });
 
 $db = $container->resolve(Database::class);
+
+// Make container static and thus global
+App::setContainer($container);
