@@ -20,7 +20,7 @@ class Container
 
         $function = $this->bindings[$key];
 
-        return $function;
+        return $function();
     }
 
 

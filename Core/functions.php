@@ -11,3 +11,9 @@ function view(string $path, array $attributes = []): void
     extract($attributes);
     require basePath('views/' . $path);
 }
+
+function redirect($path): void
+{
+    header("Location: {$path}");
+    exit();
+}

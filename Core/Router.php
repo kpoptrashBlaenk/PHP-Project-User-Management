@@ -24,16 +24,24 @@ class Router
         return $this->add($uri, $controller, 'GET');
     }
 
+    public function post(string $uri, string $controller): Router
+    {
+        return $this->add($uri, $controller, 'POST');
+    }
+
     public function route($uri, $method): mixed
     {
-        // Check if route exists, if not abort
         foreach ($this->routes as $route) {
-            if ($route['uri'] === $uri && $route['method'] === $method) {
+            if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
                 return require basePath('Http/controllers/' . $route['controller']);
             }
         }
-
         $this->abort(404);
+    }
+
+    public function previousUrl(): string
+    {
+        return $_SERVER['HTTP_REFERER'];
     }
 
     private function abort(int $code): void

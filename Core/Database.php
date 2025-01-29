@@ -18,12 +18,17 @@ class Database
         ]);
     }
 
-    public function query(string $query, array $params): Database
+    public function query(string $query, array $params = []): Database
     {
         $this->statement = $this->connection->prepare($query);
 
         $this->statement->execute($params);
 
         return $this;
+    }
+
+    public function find(): mixed
+    {
+        return $this->statement->fetch();
     }
 }
