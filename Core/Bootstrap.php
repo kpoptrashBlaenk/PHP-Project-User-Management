@@ -4,7 +4,7 @@ use Core\Container;
 use Core\Database;
 use Core\App;
 
-// Initiate container
+// Instantiate container
 $container = new Container();
 
 // Bind the the database instantiation to the container

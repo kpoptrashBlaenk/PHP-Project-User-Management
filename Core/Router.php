@@ -6,6 +6,7 @@ class Router
 {
     private array $routes = [];
 
+    // Add route to routes
     public function add(string $uri, string $controller, string $method): Router
     {
         $this->routes[] = [
@@ -25,6 +26,7 @@ class Router
 
     public function route($uri, $method): mixed
     {
+        // Check if route exists, if not abort
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === $method) {
                 return require basePath('Http/controllers/' . $route['controller']);
