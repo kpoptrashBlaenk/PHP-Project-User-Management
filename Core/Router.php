@@ -39,7 +39,7 @@ class Router
     private function abort(int $code): void
     {
         http_response_code($code);
-        require basePath('views/partials/$code.php');
+        require basePath("views/partials/{$code}.php");
         die();
     }
 }
