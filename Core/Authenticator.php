@@ -6,7 +6,11 @@ class Authenticator
 {
     public function attempt(string $email, string $password): bool
     {
-        $findUserQuery = "SELECT * FROM users WHERE mail = :email";
+        $findUserQuery =
+            "SELECT *
+             FROM users
+             NATURAL JOIN droits
+             WHERE users.mail = :email";
 
         $user = App::resolve(Database::class)->query($findUserQuery, [
             'email' => $email
@@ -16,8 +20,9 @@ class Authenticator
             $this->login([
                 'first_name' => $user['prenom'],
                 'last_name' => $user['nom'],
-                'email' => $email,
-                'user_id' => $user['id_users']
+                'email' => $user['mail'],
+                'user_id' => $user['id_users'],
+                'rights' => $user['libelle_droits']
             ]);
 
             return true;
