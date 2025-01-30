@@ -6,6 +6,7 @@ class Middleware
 {
     public const MAP = [
         'guest' => Guest::class,
+        'auth' => Auth::class,
         'user' => User::class,
         'admin' => Admin::class
     ];
