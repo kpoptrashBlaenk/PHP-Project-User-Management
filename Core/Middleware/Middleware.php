@@ -5,6 +5,7 @@ namespace Core\Middleware;
 class Middleware
 {
     public const MAP = [
+        'guest' => Guest::class,
     ];
 
     public static function resolve(array|null $keys): void
