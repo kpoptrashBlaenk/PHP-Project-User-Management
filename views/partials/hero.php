@@ -11,12 +11,16 @@
         <?php if (empty($_SESSION['user'])): ?>
             <p class="lead mb-4">Log in or create an account to continue on this page!</p>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4">Login</button>
-                <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
-                    <a href="/register" class="text-decoration-none text-white">
+                <a href="/session" class="text-decoration-none">
+                    <button type="button" class="btn btn-outline-primary btn-lg px-4">
+                        Login
+                    </button>
+                </a>
+                <a href="/register" class="text-decoration-none">
+                    <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
                         Sign up
-                    </a>
-                </button>
+                    </button>
+                </a>
             </div>
         <?php else: ?>
             <p class="lead mb-4">You can now see all the cool stuff!</p>
