@@ -16,6 +16,7 @@ $form = RegistrationForm::validate([
     'last_name' => $lastName,
     'email' => $email,
     'password' => $password,
+    'remember' => $remember
 ]);
 
 $auth = new Authenticator;

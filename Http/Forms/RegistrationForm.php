@@ -15,11 +15,11 @@ class RegistrationForm
         $this->attributes = $attributes;
         
         if (!Validator::string($this->attributes['first_name'])) {
-            $this->errors['first_name'] = 'First Name';
+            $this->errors['first_name'] = 'First name not valid';
         }
 
         if (!Validator::string($this->attributes['last_name'])) {
-            $this->errors['last_name'] = 'Last Name not valid';
+            $this->errors['last_name'] = 'Last name not valid';
         }
 
         if (!Validator::email($this->attributes['email'])) {
