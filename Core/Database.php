@@ -31,4 +31,9 @@ class Database
     {
         return $this->statement->fetch();
     }
+
+    public function get(): mixed
+    {
+        return $this->statement->fetchAll();
+    }
 }
