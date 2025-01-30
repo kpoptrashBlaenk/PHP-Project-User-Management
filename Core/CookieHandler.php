@@ -12,17 +12,28 @@ class CookieHandler
         $this->database = $db->getDB();
     }
 
+    public function checkCookie()
+    {
+        $cookies = $_COOKIE['remember'];
+
+        $query = "SELECT id_users, nom, prenom, mail, avatar, droits, cookies FROM users WHERE cookies = :cookies";
+
+        return $this->database->query($query, [
+            'cookies' => $cookies
+        ])->find();
+    }
+
     public function saveCookie(): void
     {
-        $token = bin2hex(random_bytes(16));
+        $cookies = bin2hex(random_bytes(16));
 
         $query = "UPDATE users SET cookies = :cookies WHERE mail = :email";
-        
+
         $this->database->query($query, [
             'email' => $_POST['email_input'],
-            'cookies' => $token
+            'cookies' => $cookies
         ]);
 
-        setcookie('remember', $token, time() + (60 * 60 * 24 * 30), '/');
+        setcookie('remember', $cookies, time() + (60 * 60 * 24 * 30), '/');
     }
 }

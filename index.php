@@ -1,5 +1,7 @@
 <?php
 
+use Core\Authenticator;
+use Core\CookieHandler;
 use Core\Session;
 use Core\ValidationException;
 
@@ -24,7 +26,12 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 $method = $_POST['method'] ?? $_SERVER['REQUEST_METHOD'];
 
-
+if (isset($_COOKIE['remember'])) {
+    $cookies = new CookieHandler;
+    $user = $cookies->checkCookie();
+    $auth = new Authenticator;
+    $auth->login($user);
+}
 
 try {
     $router->route($uri, $method);
