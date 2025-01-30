@@ -20,4 +20,9 @@ class App
     {
         return static::container()->resolve($key);
     }
+
+    public function getDB(): Database
+    {
+        return self::resolve(Database::class);
+    }
 }

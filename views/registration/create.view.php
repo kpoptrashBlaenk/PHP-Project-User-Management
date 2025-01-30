@@ -26,7 +26,7 @@ require basePath('views/partials/header.php');
         </div>
 
         <div class="form-check text-start my-3">
-            <input class="form-check-input" type="checkbox" value="remember-me" id="rememberInput"
+            <input class="form-check-input" type="checkbox" value="remember" id="rememberInput"
                 name="remember_input">
             <label class="form-check-label" for="rememberInput">
                 Remember me

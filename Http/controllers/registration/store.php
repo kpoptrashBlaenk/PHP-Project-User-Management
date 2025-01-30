@@ -2,13 +2,14 @@
 
 use Core\App;
 use Core\Authenticator;
-use Core\Database;
+use Core\CookieHandler;
 use Http\Forms\RegistrationForm;
 
 $firstName = $_POST['first_name_input'];
 $lastName = $_POST['last_name_input'];
 $email = $_POST['email_input'];
 $password = $_POST['password_input'];
+$remember = $_POST['remember_input'];
 
 $form = RegistrationForm::validate([
     'first_name' => $firstName,
@@ -18,8 +19,8 @@ $form = RegistrationForm::validate([
 ]);
 
 $auth = new Authenticator;
-
-$db = App::resolve(Database::class);
+$app = new App;
+$db = $app->getDB();
 
 // Check if email exists
 $findUserQuery = "SELECT * FROM users WHERE mail = :email";
@@ -56,6 +57,9 @@ if (!$isLoggedIn) {
     $form->error('email', 'No matching email or password')->throw();
 }
 
-$auth->login($user);
+if ($remember) {
+    $cookies = new CookieHandler;
+    $cookies->saveCookie();
+}
 
 redirect('/');

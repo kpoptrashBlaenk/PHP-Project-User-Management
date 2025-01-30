@@ -1,5 +1,11 @@
 <?php
 
+function dump_and_die($value): void
+{
+    var_dump($value);
+    die();
+}
+
 function basePath(string $path): string
 {
     return BASE_PATH . $path;

@@ -403,6 +403,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
   `avatar` varchar(250) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `droits` int NOT NULL,
+  `cookies` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_users`),
   KEY `droits` (`droits`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
