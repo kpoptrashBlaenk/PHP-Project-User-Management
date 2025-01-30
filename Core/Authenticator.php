@@ -14,8 +14,8 @@ class Authenticator
 
         if ($user && password_verify($password, $user['password'])) {
             $this->login([
-                'firstName' => $user['prenom'],
-                'lastName' => $user['nom'],
+                'first_name' => $user['prenom'],
+                'last_name' => $user['nom'],
                 'email' => $email,
                 'user_id' => $user['id_users']
             ]);
@@ -31,5 +31,13 @@ class Authenticator
         $_SESSION['user'] = $user;
 
         session_regenerate_id(true);
+    }
+
+    public function logout(): void
+    {
+        $cookies = new CookieHandler;
+        $cookies->deleteCookie();
+
+        Session::destroy();
     }
 }

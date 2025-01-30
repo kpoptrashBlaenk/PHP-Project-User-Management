@@ -29,6 +29,11 @@ class Router
         return $this->add($uri, $controller, 'POST');
     }
 
+    public function delete(string $uri, string $controller): Router
+    {
+        return $this->add($uri, $controller, 'DELETE');
+    }
+
     public function route($uri, $method): mixed
     {
         foreach ($this->routes as $route) {

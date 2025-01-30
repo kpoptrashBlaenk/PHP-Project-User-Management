@@ -36,4 +36,15 @@ class CookieHandler
 
         setcookie('remember', $cookies, time() + (60 * 60 * 24 * 30), '/');
     }
+
+    public function deleteCookie(): void
+    {
+        $query = 'UPDATE users SET cookies = NULL WHERE id_users = :id';
+
+        $this->database->query($query, [
+            'id' => $_SESSION['user']['user_id']
+        ]);
+
+        setcookie('remember', '', time() - 3600, "/");
+    }
 }
