@@ -12,15 +12,27 @@ class CookieHandler
         $this->database = $db->getDB();
     }
 
-    public function checkCookie()
+    public function checkCookie(): array
     {
         $cookies = $_COOKIE['remember'];
 
-        $query = "SELECT id_users, nom, prenom, mail, avatar, droits, cookies FROM users WHERE cookies = :cookies";
+        $query =
+            "SELECT users.id_users, users.nom, users.prenom, users.mail, users.avatar, users.cookies, droits.libelle_droits
+             FROM users
+             NATURAL JOIN droits
+             WHERE users.cookies = :cookies";
 
-        return $this->database->query($query, [
+        $user = $this->database->query($query, [
             'cookies' => $cookies
         ])->find();
+
+        return [
+            'first_name' => $user['prenom'],
+            'last_name' => $user['nom'],
+            'email' => $user['nom'],
+            'user_id' => $user['id_users'],
+            'rights' => $user['libelle_droits']
+        ];
     }
 
     public function saveCookie(): void

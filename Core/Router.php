@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Core\Middleware\Middleware;
+
 class Router
 {
     private array $routes = [];
@@ -34,14 +36,26 @@ class Router
         return $this->add($uri, $controller, 'DELETE');
     }
 
-    public function route($uri, $method): mixed
+    public function route(string $uri, string $method): mixed
     {
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
+
+                Middleware::resolve($route['middleware']);
+
                 return require basePath('Http/controllers/' . $route['controller']);
             }
         }
         $this->abort(404);
+    }
+
+    public function only(array|string $keys): static
+    {
+        $keys = (array) $keys;
+
+        $this->routes[array_key_last($this->routes)]['middleware'] = $keys;
+
+        return $this;
     }
 
     public function previousUrl(): string
