@@ -1,61 +1,55 @@
 <?php
 
 use Core\App;
-use Http\Forms\CardForm;
+use Http\Forms\TicketForm;
 
-$name_input = $_POST['name_input'];
-$category_input = $_POST['category_input'];
-$caution_input = $_POST['caution_input'];
+$card_input = $_POST['card_input'];
 $date_input = $_POST['date_input'];
 
 $formAttributes = [
-    'name' => $name_input,
-    'caution' => $caution_input,
     'date' => $date_input
 ];
 
-$form = CardForm::validate($formAttributes);
+$form = TicketForm::validate($formAttributes);
 
 $app = new App();
 $db = $app->getDB();
 
-// Check category
-$getCategoryQuery =
+// Check card
+$getCardQuery =
     "SELECT *
-     FROM categorie
-     WHERE categorie.id_categorie = :category";
+     FROM usager
+     WHERE usager.id_carte = :card_id";
 
-$category = $db->query($getCategoryQuery, [
-    'category' => $category_input
+$card = $db->query($getCardQuery, [
+    'card_id' => $card_input
 ])->find();
 
-if (!$category) {
-    $form::categoryNotExists($formAttributes);
+if (!$card) {
+    $form::cardNotExists($formAttributes);
 }
 
 // Get last inserted id
 $lastIdQuery =
-    "SELECT id_carte AS id
-     FROM usager
-     ORDER BY CAST(SUBSTRING(id_carte, 2) AS UNSIGNED) DESC";
-     
+    "SELECT id_ticket AS id
+     FROM ticket
+     ORDER BY CAST(SUBSTRING(id_ticket, 2) AS UNSIGNED) DESC";
+
 $lastId = $db->query($lastIdQuery)->find();
 
 $newId = intval(substr($lastId['id'], 1)) + 1;
-$cardId = "C$newId";
+$ticketId = "C$newId";
 
 // Insert
 $insertTariffQuery =
-    "INSERT INTO usager
-     (usager.id_carte, usager.nom, usager.id_categorie, usager.montant_caution, usager.date_carte)
-     VALUES (:card_id, :name, :category_id, :caution, :date)";
+    "INSERT INTO ticket
+     (ticket.id_ticket, ticket.id_carte, ticket.date_achat)
+     VALUES (:ticket_id, :card_id, :date)";
 
 $db->query($insertTariffQuery, [
-    'card_id' => $cardId,
-    'name' => $name_input,
-    'category_id' => $category_input,
-    'caution' => $caution_input,
+    'ticket_id' => $ticketId,
+    'card_id' => $card_input,
     'date' => $date_input
 ]);
 
-redirect('/admin/card');
+redirect('/admin/ticket');
