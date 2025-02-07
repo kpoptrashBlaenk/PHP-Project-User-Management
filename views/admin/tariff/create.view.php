@@ -4,7 +4,7 @@ require basePath('views/partials/header.php');
 ?>
 
 <div class="table-responsive small container px-5">
-    <table class="table table-sm text-center">
+    <table class="table table-sm text-center align-middle">
         <thead>
             <tr>
                 <th scope="col">Prestation</th>

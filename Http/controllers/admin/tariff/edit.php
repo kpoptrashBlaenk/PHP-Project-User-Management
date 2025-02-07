@@ -2,6 +2,9 @@
 
 use Core\App;
 
+$errors = isset($_SESSION['_flashed']) ? $_SESSION['_flashed']['errors'] : [];
+$old = isset($_SESSION['_flashed']) ? $_SESSION['_flashed']['old'] : [];
+
 $prestation = $_GET['prestation_id'];
 $category = $_GET['category_id'];
 
@@ -26,4 +29,6 @@ $tariff = $db->query($getTariffQuery, [
 
 view('admin/tariff/edit.view.php', [
     'tariff' => $tariff,
+    'errors' => $errors,
+    'old' => $old
 ]);
