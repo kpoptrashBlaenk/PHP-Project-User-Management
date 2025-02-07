@@ -41,9 +41,7 @@ $category = $db->query($getCategoryQuery, [
 ])->find();
 
 if (!$category) {
-    $form::categoryNotExists([
-        'price' => $price
-    ]);
+    $form::categoryNotExists($formAttributes);
 }
 
 // Check tariff

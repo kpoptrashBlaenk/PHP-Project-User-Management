@@ -19,10 +19,10 @@ $updateTariffQuery =
      SET tarif.prix = :price
      WHERE tarif.id_prestation = :prestation_id AND tarif.id_categorie = :category_id";
 
-$tariff = $db->query($updateTariffQuery, [
+$db->query($updateTariffQuery, [
     'price' => $price,
     'prestation_id' => $prestationId,
     'category_id' => $categoryId
-])->find();
+]);
 
 redirect('/admin/tariff');

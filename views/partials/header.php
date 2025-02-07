@@ -21,6 +21,9 @@
                 <li><a href="/admin/tariff"
                         class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/admin/tariff' ? 'link-secondary' : '' ?>">Tariff</a>
                 </li>
+                <li><a href="/admin/category"
+                        class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/admin/category' ? 'link-secondary' : '' ?>">Category</a>
+                </li>
             </ul>
 
         <?php endif; ?>

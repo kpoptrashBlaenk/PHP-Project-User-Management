@@ -13,6 +13,9 @@
                 <li class="nav-item"><a href="/tariff"
                         class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/tariff' ? 'link-secondary' : '' ?>">Tariff</a>
                 </li>
+                <li class="nav-item"><a href="/category"
+                        class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/category' ? 'link-secondary' : '' ?>">Category</a>
+                </li>
             <?php endif; ?>
         </ul>
     </footer>
