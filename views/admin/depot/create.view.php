@@ -4,29 +4,24 @@ require basePath('views/partials/header.php');
 ?>
 
 <div class="mt-5 pt-5 container">
-    <form class="row g-3" action="/admin/tariff/store" method="POST">
+    <form class="row g-3" action="/admin/depot/store" method="POST">
         <div class="col-md-4">
-            <label for="prestation_input" class="form-label">Prestation</label>
-            <select class="form-select <?= isset($errors['prestation']) ? 'is-invalid' : '' ?>" id="prestation_input"
-                name="prestation_input">
-                <option value="" selected>Choose a prestation...</option>
-                <?php foreach ($prestations as $prestation): ?>
-                    <option value="<?= $prestation['prestation_id'] ?>"> <?= $prestation['prestation'] ?></option>
+            <label for="card_input" class="form-label">Card</label>
+            <select class="form-select <?= isset($errors['card']) ? 'is-invalid' : '' ?>" id="card_input"
+                name="card_input">
+                <option value="" selected>Choose a card...</option>
+                <?php foreach ($cards as $card): ?>
+                    <option value="<?= $card['card_id'] ?>"> <?= $card['card_id'] ?></option>
                 <?php endforeach; ?>
             </select>
-            <div class="invalid-feedback"><?= $errors['prestation'] ?? '' ?></div>
+            <div class="invalid-feedback"><?= $errors['card'] ?? '' ?></div>
         </div>
 
-        <div class="col-md-4">
-            <label for="category_input" class="form-label">Category</label>
-            <select class="form-select <?= isset($errors['category']) ? 'is-invalid' : '' ?>" id="category_input"
-                name="category_input">
-                <option value="" selected>Choose a category...</option>
-                <?php foreach ($categories as $category): ?>
-                    <option value="<?= $category['category_id'] ?>"> <?= $category['category'] ?></option>
-                <?php endforeach; ?>
-            </select>
-            <div class="invalid-feedback"><?= $errors['category'] ?? '' ?></div>
+        <div class="col-md-3">
+            <label for="date_input" class="form-label">Date</label>
+            <input type="date" class="form-control <?= isset($errors['date']) ? 'is-invalid' : '' ?>" id="date_input"
+                name="date_input" value="<?= $old['date'] ?? '' ?>">
+            <div class="invalid-feedback"><?= $errors['date'] ?? '' ?></div>
         </div>
 
         <div class="col-md-4">
