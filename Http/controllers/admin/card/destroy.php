@@ -2,17 +2,17 @@
 
 use Core\App;
 
-$categoryId = $_POST['category_id'];
+$cardId = $_POST['card_id'];
 
 $app = new App;
 $db = $app->getDB();
 
-$deleteCategoryQuery =
-    "DELETE FROM categorie
-     WHERE categorie.id_categorie = :category_id";
+$deleteCardQuery =
+    "DELETE FROM usager
+     WHERE usager.id_carte = :card_id";
 
-$tariff = $db->query($deleteCategoryQuery, [
-    'category_id' => $categoryId
+$tariff = $db->query($deleteCardQuery, [
+    'card_id' => $cardId
 ]);
 
-redirect('/admin/category');
+redirect('/admin/card');
