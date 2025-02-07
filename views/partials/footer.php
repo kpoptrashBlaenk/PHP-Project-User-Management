@@ -25,6 +25,9 @@
                 <li class="nav-item"><a href="/user"
                         class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/user' ? 'link-secondary' : '' ?>">User</a>
                 </li>
+                <li class="nav-item"><a href="/ticket"
+                        class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/ticket' ? 'link-secondary' : '' ?>">Ticket</a>
+                </li>
             <?php endif; ?>
         </ul>
     </footer>

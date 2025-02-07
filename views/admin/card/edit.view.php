@@ -35,7 +35,7 @@ require basePath('views/partials/header.php');
         </div>
 
         <div class="col-md-3">
-            <label for="date_input" class="form-label">Caution</label>
+            <label for="date_input" class="form-label">Date</label>
             <input type="date" class="form-control <?= isset($errors['date']) ? 'is-invalid' : '' ?>" id="date_input"
                 name="date_input" min="0" max="100" value="<?= $old['date'] ?? $card['date'] ?>">
             <div class="invalid-feedback"><?= $errors['date'] ?? $card['date'] ?></div>
