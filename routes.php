@@ -42,3 +42,11 @@ $router->get('/admin/prestation/edit', 'admin/prestation/edit.php')->only('admin
 $router->post('/admin/prestation/store', 'admin/prestation/store.php')->only('admin');
 $router->patch('/admin/prestation/update', 'admin/prestation/update.php')->only('admin');
 $router->delete('/admin/prestation/destroy', 'admin/prestation/destroy.php')->only('admin');
+
+// Card
+$router->get('/admin/card', 'admin/card/show.php')->only('admin');
+$router->get('/admin/card/create', 'admin/card/create.php')->only('admin');
+$router->get('/admin/card/edit', 'admin/card/edit.php')->only('admin');
+$router->post('/admin/card/store', 'admin/card/store.php')->only('admin');
+$router->patch('/admin/card/update', 'admin/card/update.php')->only('admin');
+$router->delete('/admin/card/destroy', 'admin/card/destroy.php')->only('admin');

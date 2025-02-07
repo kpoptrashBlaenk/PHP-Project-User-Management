@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use DateTime;
+
 class Validator
 {
 
@@ -18,5 +20,11 @@ class Validator
     public static function email(string $value): bool
     {
         return filter_var($value, FILTER_VALIDATE_EMAIL);
+    }
+
+    public static function date(string $value): bool
+    {
+        $date = DateTime::createFromFormat('Y-m-d', $value);
+        return $date->format('Y-m-d') === $value;
     }
 }
