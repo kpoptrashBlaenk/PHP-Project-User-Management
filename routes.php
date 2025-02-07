@@ -19,3 +19,4 @@ $router->get('/tariff', 'tariff/show.php')->only(['auth']);
 
 // ### Admin ###
 $router->get('/admin/tariff', 'admin/tariff/create.php')->only('admin');
+$router->get('/admin/tariff/edit', 'admin/tariff/edit.php')->only('admin');

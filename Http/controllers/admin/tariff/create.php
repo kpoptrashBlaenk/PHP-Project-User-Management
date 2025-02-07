@@ -6,7 +6,9 @@ $app = new App;
 $db = $app->getDB();
 
 $getTariffsQuery =
-    "SELECT prestation.type_prestation AS prestation,
+    "SELECT tarif.id_prestation AS prestation_id,
+            tarif.id_categorie AS category_id,
+            prestation.type_prestation AS prestation,
             categorie.libelle_categorie AS category,
             tarif.prix AS price
      FROM tarif
