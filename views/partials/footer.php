@@ -13,6 +13,24 @@
                 <li class="nav-item"><a href="/tariff"
                         class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/tariff' ? 'link-secondary' : '' ?>">Tariff</a>
                 </li>
+                <li class="nav-item"><a href="/category"
+                        class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/category' ? 'link-secondary' : '' ?>">Category</a>
+                </li>
+                <li class="nav-item"><a href="/prestation"
+                        class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/prestation' ? 'link-secondary' : '' ?>">Prestation</a>
+                </li>
+                <li class="nav-item"><a href="/card"
+                        class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/card' ? 'link-secondary' : '' ?>">Card</a>
+                </li>
+                <li class="nav-item"><a href="/user"
+                        class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/user' ? 'link-secondary' : '' ?>">User</a>
+                </li>
+                <li class="nav-item"><a href="/ticket"
+                        class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/ticket' ? 'link-secondary' : '' ?>">Ticket</a>
+                </li>
+                <li class="nav-item"><a href="/depot"
+                        class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/depot' ? 'link-secondary' : '' ?>">Depot</a>
+                </li>
             <?php endif; ?>
         </ul>
     </footer>
