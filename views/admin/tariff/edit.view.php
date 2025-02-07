@@ -5,7 +5,7 @@ require basePath('views/partials/header.php');
 
 <div class="mt-5 pt-5 container">
     <form class="row g-3" action="/admin/tariff/update" method="POST">
-        <input hidden name="_method" value="PATCH">
+        <input hidden name="_method" value="PATCH" id="method">
         <input hidden name="prestation_id" value="<?= $tariff['prestation_id'] ?>">
         <input hidden name="category_id" value="<?= $tariff['category_id'] ?>">
 
@@ -32,10 +32,10 @@ require basePath('views/partials/header.php');
 
         <div class="col-12">
             <button class="btn btn-primary" type="Submit">Save</button>
+            <button id="deleteButton" class="btn btn-danger" type="submit">Delete</button>
         </div>
     </form>
 </div>
-
 
 <?php
 require basePath('views/partials/footer.php');
