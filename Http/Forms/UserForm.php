@@ -10,24 +10,24 @@ class UserForm extends BaseForm
     {
         $this->attributes = $attributes;
 
-        if (!Validator::string($this->attributes['name'])) {
-            $this->errors['name'] = 'Name not valid';
+        if (!Validator::string($this->attributes['last_name'])) {
+            $this->errors['last_name'] = 'Last name not valid';
         }
 
-        if (!Validator::number($this->attributes['caution'])) {
-            $this->errors['caution'] = 'Caution not valid';
+        if (!Validator::string($this->attributes['first_name'])) {
+            $this->errors['first_name'] = 'First name not valid';
         }
 
-        if (!Validator::string($this->attributes['date'])) {
-            $this->errors['date'] = 'Date not valid';
+        if (!Validator::email($this->attributes['email'])) {
+            $this->errors['email'] = 'Email not valid';
         }
     }
 
-    public static function categoryNotExists(array $attributes)
+    public static function rightsNotExists(array $attributes)
     {
         $instance = new static($attributes);
 
-        $instance->errors['category'] = 'Category doesn\'t exist';
+        $instance->errors['rights'] = 'Right doesn\'t exist';
 
         return $instance->throw();
     }

@@ -1,51 +1,51 @@
 <?php
 
 use Core\App;
-use Http\Forms\CardForm;
+use Http\Forms\UserForm;
 
-$cardId = $_POST['card_id'];
-$name_input = $_POST['name_input'];
-$category_input = $_POST['category_input'];
-$caution_input = $_POST['caution_input'];
-$date_input = $_POST['date_input'];
+$userId = $_POST['user_id'];
+$last_name_input = $_POST['last_name_input'];
+$first_name_input = $_POST['first_name_input'];
+$email_input = $_POST['email_input'];
+$rights_input = $_POST['rights_input'];
 
 $formAttributes = [
-    'name' => $name_input,
-    'caution' => $caution_input,
-    'date' => $date_input
+    'last_name' => $last_name_input,
+    'first_name' => $first_name_input,
+    'email' => $email_input,
 ];
 
-$form = CardForm::validate($formAttributes);
+$form = UserForm::validate($formAttributes);
 
 $app = new App;
 $db = $app->getDB();
 
-// Check category
-$getCategoryQuery =
+// Check rights
+$getRightQuery =
     "SELECT *
-     FROM categorie
-     WHERE categorie.id_categorie = :category";
+     FROM droits
+     WHERE droits.id_droits = :rights_id";
 
-$category = $db->query($getCategoryQuery, [
-    'category' => $category_input
+$rights = $db->query($getRightQuery, [
+    'rights_id' => $rights_input
 ])->find();
 
-if (!$category) {
-    $form::categoryNotExists($formAttributes);
+if (!$rights) {
+    $form::rightsNotExists($formAttributes);
 }
 
-// Update card
-$updateCardQuery =
-    "UPDATE usager
-     SET usager.nom = :name, usager.id_categorie = :category_id, usager.montant_caution = :caution, usager.date_carte = :date
-     WHERE usager.id_carte = :card_id";
+// Update user
+$updateUserQuery =
+    "UPDATE users
+     SET users.nom = :last_name, users.prenom = :first_name, users.mail = :email, users.id_droits = :rights_id
+     WHERE users.id_users = :user_id";
 
-$db->query($updateCardQuery, [
-    'name' => $name_input,
-    'category_id' => $category_input,
-    'caution' => $caution_input,
-    'date' => $date_input,
-    'card_id' => $cardId
+$db->query($updateUserQuery, [
+    'last_name' => $last_name_input,
+    'first_name' => $first_name_input,
+    'email' => $email_input,
+    'rights_id' => $rights_input,
+    'user_id' => $userId
 ]);
 
-redirect('/admin/card');
+redirect('/admin/user');

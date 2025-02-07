@@ -24,7 +24,7 @@ require basePath('views/partials/header.php');
 
         <div class="col-md-3">
             <label for="email_input" class="form-label">Email</label>
-            <input type="text" class="form-control <?= isset($errors['email']) ? 'is-invalid' : '' ?>" id="email_input"
+            <input type="email" class="form-control <?= isset($errors['email']) ? 'is-invalid' : '' ?>" id="email_input"
                 name="email_input" value="<?= $old['email'] ?? $user['email'] ?>">
             <div class="invalid-feedback"><?= $errors['email'] ?? $user['email'] ?></div>
         </div>
