@@ -2,7 +2,7 @@
     <header
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
 
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <ul class="nav col-12 col-md-3 mb-2 justify-content-start mb-md-0">
             <!-- Default -->
             <li><a href="/"
                     class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/' ? 'link-secondary' : '' ?>">Home</a></li>
@@ -14,6 +14,16 @@
                 </li>
             <?php endif; ?>
         </ul>
+
+        <!-- Admin Tables -->
+        <?php if (isset($_SESSION['user']) && $_SESSION['user']['rights'] === 'Admin'): ?>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/admin/tariff"
+                        class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/admin/tariff' ? 'link-secondary' : '' ?>">Tariff</a>
+                </li>
+            </ul>
+
+        <?php endif; ?>
 
         <div class="col-md-3 text-end">
             <?php if (isset($_SESSION['user'])): ?>
