@@ -66,3 +66,11 @@ $router->get('/admin/ticket/edit', 'admin/ticket/edit.php')->only('admin');
 $router->post('/admin/ticket/store', 'admin/ticket/store.php')->only('admin');
 $router->patch('/admin/ticket/update', 'admin/ticket/update.php')->only('admin');
 $router->delete('/admin/ticket/destroy', 'admin/ticket/destroy.php')->only('admin');
+
+// Depot
+$router->get('/admin/depot', 'admin/depot/show.php')->only('admin');
+$router->get('/admin/depot/create', 'admin/depot/create.php')->only('admin');
+$router->get('/admin/depot/edit', 'admin/depot/edit.php')->only('admin');
+$router->post('/admin/depot/store', 'admin/depot/store.php')->only('admin');
+$router->patch('/admin/depot/update', 'admin/depot/update.php')->only('admin');
+$router->delete('/admin/depot/destroy', 'admin/depot/destroy.php')->only('admin');
