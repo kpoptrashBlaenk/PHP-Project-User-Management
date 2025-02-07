@@ -26,3 +26,19 @@ $router->get('/admin/tariff/edit', 'admin/tariff/edit.php')->only('admin');
 $router->post('/admin/tariff/store', 'admin/tariff/store.php')->only('admin');
 $router->patch('/admin/tariff/update', 'admin/tariff/update.php')->only('admin');
 $router->delete('/admin/tariff/destroy', 'admin/tariff/destroy.php')->only('admin');
+
+// Category
+$router->get('/admin/category', 'admin/category/show.php')->only('admin');
+$router->get('/admin/category/create', 'admin/category/create.php')->only('admin');
+$router->get('/admin/category/edit', 'admin/category/edit.php')->only('admin');
+$router->post('/admin/category/store', 'admin/category/store.php')->only('admin');
+$router->patch('/admin/category/update', 'admin/category/update.php')->only('admin');
+$router->delete('/admin/category/destroy', 'admin/category/destroy.php')->only('admin');
+
+// Prestation
+$router->get('/admin/prestation', 'admin/prestation/show.php')->only('admin');
+$router->get('/admin/prestation/create', 'admin/prestation/create.php')->only('admin');
+$router->get('/admin/prestation/edit', 'admin/prestation/edit.php')->only('admin');
+$router->post('/admin/prestation/store', 'admin/prestation/store.php')->only('admin');
+$router->patch('/admin/prestation/update', 'admin/prestation/update.php')->only('admin');
+$router->delete('/admin/prestation/destroy', 'admin/prestation/destroy.php')->only('admin');

@@ -423,39 +423,39 @@ INSERT INTO `users` (`id_users`, `nom`, `prenom`, `mail`, `password`, `avatar`, 
 -- Contraintes pour la table `achat`
 --
 ALTER TABLE `achat`
-  ADD CONSTRAINT `achat_ibfk_1` FOREIGN KEY (`id_prestation`) REFERENCES `prestation` (`id_prestation`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `achat_ibfk_2` FOREIGN KEY (`id_ticket`) REFERENCES `ticket` (`id_ticket`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `achat_ibfk_1` FOREIGN KEY (`id_prestation`) REFERENCES `prestation` (`id_prestation`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `achat_ibfk_2` FOREIGN KEY (`id_ticket`) REFERENCES `ticket` (`id_ticket`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `depot`
 --
 ALTER TABLE `depot`
-  ADD CONSTRAINT `depot_ibfk_1` FOREIGN KEY (`id_carte`) REFERENCES `usager` (`id_carte`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `depot_ibfk_1` FOREIGN KEY (`id_carte`) REFERENCES `usager` (`id_carte`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `tarif`
 --
 ALTER TABLE `tarif`
-  ADD CONSTRAINT `tarif_ibfk_1` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `tarif_ibfk_2` FOREIGN KEY (`id_prestation`) REFERENCES `prestation` (`id_prestation`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `tarif_ibfk_1` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tarif_ibfk_2` FOREIGN KEY (`id_prestation`) REFERENCES `prestation` (`id_prestation`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `ticket`
 --
 ALTER TABLE `ticket`
-  ADD CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`id_carte`) REFERENCES `usager` (`id_carte`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`id_carte`) REFERENCES `usager` (`id_carte`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `usager`
 --
 ALTER TABLE `usager`
-  ADD CONSTRAINT `usager_ibfk_1` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `usager_ibfk_1` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`droits`) REFERENCES `droits` (`id_droits`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`droits`) REFERENCES `droits` (`id_droits`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
