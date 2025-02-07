@@ -28,6 +28,7 @@ require basePath('views/partials/header.php');
                 <form action="/admin/depot/edit" method="GET">
                     <input type="hidden" name="card_id" value="<?= $depot['card_id'] ?>">
                     <input type="hidden" name="depot_date" value="<?= $depot['depot_date'] ?>">
+                    <input type="hidden" name="price" value="<?= $depot['price'] ?>">
                     <tr class="table-<?= $colors[$depot['card_id']] ?>">
                         <td><?= $depot['card_id'] ?></td>
                         <td><?= $depot['name'] ?></td>

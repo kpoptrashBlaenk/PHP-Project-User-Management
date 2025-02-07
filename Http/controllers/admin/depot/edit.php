@@ -5,30 +5,37 @@ use Core\App;
 $errors = isset($_SESSION['_flashed']) ? $_SESSION['_flashed']['errors'] : [];
 $old = isset($_SESSION['_flashed']) ? $_SESSION['_flashed']['old'] : [];
 
-$prestation = $_GET['prestation_id'];
-$category = $_GET['category_id'];
+$card = $_GET['card_id'];
+$date = $_GET['depot_date'];
+$price = $_GET['price'];
 
 $app = new App;
 $db = $app->getDB();
 
-$getTariffQuery =
-    "SELECT tarif.id_prestation AS prestation_id,
-            tarif.id_categorie AS category_id,
-            prestation.type_prestation AS prestation,
-            categorie.libelle_categorie AS category,
-            tarif.prix AS price
-     FROM tarif
-     NATURAL JOIN prestation
-     NATURAL JOIN categorie
-     WHERE tarif.id_prestation = :prestation_id AND tarif.id_categorie = :category_id";
+// Get depot
+$getDepotQuery =
+    "SELECT depot.id_carte AS card_id,
+            depot.date_depot AS date,
+            depot.montant AS price
+     FROM depot
+     WHERE depot.id_carte = :card_id AND depot.date_depot = :date AND depot.montant = :price";
 
-$tariff = $db->query($getTariffQuery, [
-    'prestation_id' => $prestation,
-    'category_id' => $category
+$depot = $db->query($getDepotQuery, [
+    'card_id' => $card,
+    'date' => $date,
+    'price' => $price
 ])->find();
 
-view('admin/tariff/edit.view.php', [
-    'tariff' => $tariff,
+// Get cards
+$getCardsQuery =
+    "SELECT usager.id_carte AS card_id
+     FROM usager";
+
+$cards = $db->query($getCardsQuery)->get();
+
+view('admin/depot/edit.view.php', [
+    'depot' => $depot,
+    'cards' => $cards,
     'errors' => $errors,
     'old' => $old
 ]);
