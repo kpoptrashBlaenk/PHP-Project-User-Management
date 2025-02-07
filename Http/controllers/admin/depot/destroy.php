@@ -2,19 +2,19 @@
 
 use Core\App;
 
-$prestationId = $_POST['prestation_id'];
-$categoryId = $_POST['category_id'];
+$cardId = $_POST['card_id'];
+$date = $_POST['date'];
 
 $app = new App;
 $db = $app->getDB();
 
-$deleteTariffQuery =
-    "DELETE FROM tarif
-     WHERE tarif.id_prestation = :prestation_id AND tarif.id_categorie = :category_id";
+$deleteDepotQuery =
+    "DELETE FROM depot
+     WHERE depot.id_carte = :card_id AND depot.date_depot = :date";
 
-$tariff = $db->query($deleteTariffQuery, [
-    'prestation_id' => $prestationId,
-    'category_id' => $categoryId
+$tariff = $db->query($deleteDepotQuery, [
+    'card_id' => $cardId,
+    'date' => $date
 ]);
 
-redirect('/admin/tariff');
+redirect('/admin/depot');
