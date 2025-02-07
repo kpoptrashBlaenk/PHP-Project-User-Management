@@ -30,6 +30,9 @@
                 <li><a href="/admin/card"
                         class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/admin/card' ? 'link-secondary' : '' ?>">Card</a>
                 </li>
+                <li><a href="/admin/user"
+                        class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/admin/user' ? 'link-secondary' : '' ?>">User</a>
+                </li>
             </ul>
 
         <?php endif; ?>
