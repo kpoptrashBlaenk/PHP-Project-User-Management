@@ -38,7 +38,7 @@ $lastIdQuery =
 $lastId = $db->query($lastIdQuery)->find();
 
 $newId = intval(substr($lastId['id'], 1)) + 1;
-$ticketId = "C$newId";
+$ticketId = "T$newId";
 
 // Insert
 $insertTariffQuery =

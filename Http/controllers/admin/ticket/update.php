@@ -1,51 +1,45 @@
 <?php
 
 use Core\App;
-use Http\Forms\CardForm;
+use Http\Forms\TicketForm;
 
-$cardId = $_POST['card_id'];
-$name_input = $_POST['name_input'];
-$category_input = $_POST['category_input'];
-$caution_input = $_POST['caution_input'];
+$ticketId = $_POST['ticket_id'];
+$card_input = $_POST['card_input'];
 $date_input = $_POST['date_input'];
 
 $formAttributes = [
-    'name' => $name_input,
-    'caution' => $caution_input,
     'date' => $date_input
 ];
 
-$form = CardForm::validate($formAttributes);
+$form = TicketForm::validate($formAttributes);
 
 $app = new App;
 $db = $app->getDB();
 
-// Check category
-$getCategoryQuery =
+// Check card
+$getCardQuery =
     "SELECT *
-     FROM categorie
-     WHERE categorie.id_categorie = :category";
-
-$category = $db->query($getCategoryQuery, [
-    'category' => $category_input
-])->find();
-
-if (!$category) {
-    $form::categoryNotExists($formAttributes);
-}
-
-// Update card
-$updateCardQuery =
-    "UPDATE usager
-     SET usager.nom = :name, usager.id_categorie = :category_id, usager.montant_caution = :caution, usager.date_carte = :date
+     FROM usager
      WHERE usager.id_carte = :card_id";
 
+$card = $db->query($getCardQuery, [
+    'card_id' => $card_input
+])->find();
+
+if (!$card) {
+    $form::cardNotExists($formAttributes);
+}
+
+// Update ticket
+$updateCardQuery =
+    "UPDATE ticket
+     SET ticket.id_carte = :card_id, ticket.date_achat = :date
+     WHERE ticket.id_ticket = :ticket_id";
+
 $db->query($updateCardQuery, [
-    'name' => $name_input,
-    'category_id' => $category_input,
-    'caution' => $caution_input,
-    'date' => $date_input,
-    'card_id' => $cardId
+    'ticket_id' => $ticketId,
+    'card_id' => $card_input,
+    'date' => $date_input
 ]);
 
-redirect('/admin/card');
+redirect('/admin/ticket');
