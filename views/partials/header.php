@@ -36,6 +36,9 @@
                 <li><a href="/admin/ticket"
                         class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/admin/ticket' ? 'link-secondary' : '' ?>">Ticket</a>
                 </li>
+                <li><a href="/admin/depot"
+                        class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/admin/depot' ? 'link-secondary' : '' ?>">Depot</a>
+                </li>
             </ul>
 
         <?php endif; ?>
