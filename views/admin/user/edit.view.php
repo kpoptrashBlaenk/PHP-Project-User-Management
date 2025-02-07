@@ -4,41 +4,40 @@ require basePath('views/partials/header.php');
 ?>
 
 <div class="mt-5 pt-5 container">
-    <form class="row g-3" action="/admin/card/update" method="POST">
+    <form class="row g-3" action="/admin/user/update" method="POST">
         <input hidden name="_method" value="PATCH" id="method">
-        <input hidden name="card_id" value="<?= $card['card_id'] ?>">
+        <input hidden name="user_id" value="<?= $user['user_id'] ?>">
 
         <div class="col-md-3">
-            <label for="name_input" class="form-label">Name</label>
-            <input type="text" class="form-control <?= isset($errors['name']) ? 'is-invalid' : '' ?>" id="name_input"
-                name="name_input" min="0" max="100" value="<?= $old['name'] ?? $card['name'] ?>">
-            <div class="invalid-feedback"><?= $errors['name'] ?? $card['name'] ?></div>
+            <label for="last_name_input" class="form-label">Last Name</label>
+            <input type="text" class="form-control <?= isset($errors['last_name']) ? 'is-invalid' : '' ?>"
+                id="last_name_input" name="last_name_input" value="<?= $old['last_name'] ?? $user['last_name'] ?>">
+            <div class="invalid-feedback"><?= $errors['last_name'] ?? $user['last_name'] ?></div>
         </div>
 
         <div class="col-md-3">
-            <label for="category_input" class="form-label">Category</label>
-            <select class="form-select <?= isset($errors['category']) ? 'is-invalid' : '' ?>" id="category_input"
-                name="category_input">
-                <?php foreach ($categories as $category): ?>
-                    <option value="<?= $category['category_id'] ?>" <?= $category['category_id'] === $card['category_id'] ? 'selected' : '' ?>> <?= $category['category'] ?></option>
+            <label for="first_name_input" class="form-label">First Name</label>
+            <input type="text" class="form-control <?= isset($errors['first_name']) ? 'is-invalid' : '' ?>"
+                id="first_name_input" name="first_name_input" value="<?= $old['first_name'] ?? $user['first_name'] ?>">
+            <div class="invalid-feedback"><?= $errors['first_name'] ?? $user['first_name'] ?></div>
+        </div>
+
+        <div class="col-md-3">
+            <label for="email_input" class="form-label">Email</label>
+            <input type="text" class="form-control <?= isset($errors['email']) ? 'is-invalid' : '' ?>" id="email_input"
+                name="email_input" value="<?= $old['email'] ?? $user['email'] ?>">
+            <div class="invalid-feedback"><?= $errors['email'] ?? $user['email'] ?></div>
+        </div>
+
+        <div class="col-md-3">
+            <label for="rights_input" class="form-label">Rights</label>
+            <select class="form-select <?= isset($errors['rights']) ? 'is-invalid' : '' ?>" id="rights_input"
+                name="rights_input">
+                <?php foreach ($rights as $right): ?>
+                    <option value="<?= $right['rights_id'] ?>" <?= $right['rights_id'] === $user['rights_id'] ? 'selected' : '' ?>> <?= $right['rights'] ?></option>
                 <?php endforeach; ?>
             </select>
-            <div class="invalid-feedback"><?= $errors['category'] ?? '' ?></div>
-        </div>
-
-        <div class="col-md-3">
-            <label for="caution_input" class="form-label">Caution</label>
-            <input type="text" class="form-control <?= isset($errors['caution']) ? 'is-invalid' : '' ?>"
-                id="caution_input" name="caution_input" min="0" max="100"
-                value="<?= $old['caution'] ?? $card['caution'] ?>">
-            <div class="invalid-feedback"><?= $errors['caution'] ?? $card['caution'] ?></div>
-        </div>
-
-        <div class="col-md-3">
-            <label for="date_input" class="form-label">Caution</label>
-            <input type="date" class="form-control <?= isset($errors['date']) ? 'is-invalid' : '' ?>" id="date_input"
-                name="date_input" min="0" max="100" value="<?= $old['date'] ?? $card['date'] ?>">
-            <div class="invalid-feedback"><?= $errors['date'] ?? $card['date'] ?></div>
+            <div class="invalid-feedback"><?= $errors['rights'] ?? '' ?></div>
         </div>
 
         <div class="col-12">
