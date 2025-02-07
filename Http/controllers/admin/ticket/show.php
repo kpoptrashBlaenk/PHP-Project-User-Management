@@ -5,17 +5,20 @@ use Core\App;
 $app = new App;
 $db = $app->getDB();
 
-$getCardsQuery =
-    "SELECT usager.id_carte AS card_id,
+$getTicketQuery =
+    "SELECT ticket.id_ticket AS ticket_id,
+            ticket.id_carte AS card_id,
             usager.nom AS name,
             categorie.libelle_categorie AS category,
             usager.montant_caution AS caution,
-            usager.date_carte AS date
-     FROM usager
+            usager.date_carte AS card_date,
+            ticket.date_achat AS ticket_date
+     FROM ticket
+     NATURAL JOIN usager
      NATURAL JOIN categorie
-     ORDER BY usager.date_carte DESC";
+     ORDER BY ticket.date_achat DESC";
 
-$cards = $db->query($getCardsQuery)->get();
+$tickets = $db->query($getTicketQuery)->get();
 
 $colors = [];
 $tempColors = [];
@@ -31,16 +34,16 @@ $availableColors = [
 $colors = [];
 $colorIndex = 0;
 
-foreach ($cards as $card) {
-    $card = $card['card_id'];
+foreach ($tickets as $ticket) {
+    $ticket = $ticket['ticket_id'];
 
-    if (!isset($colors[$card])) {
-        $colors[$card] = $availableColors[$colorIndex % count($availableColors)];
+    if (!isset($colors[$ticket])) {
+        $colors[$ticket] = $availableColors[$colorIndex % count($availableColors)];
         $colorIndex++;
     }
 }
 
-view('admin/card/show.view.php', [
-    'cards' => $cards,
+view('admin/ticket/show.view.php', [
+    'tickets' => $tickets,
     'colors' => $colors
 ]);
