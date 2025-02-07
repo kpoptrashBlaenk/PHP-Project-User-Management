@@ -34,3 +34,11 @@ $router->get('/admin/category/edit', 'admin/category/edit.php')->only('admin');
 $router->post('/admin/category/store', 'admin/category/store.php')->only('admin');
 $router->patch('/admin/category/update', 'admin/category/update.php')->only('admin');
 $router->delete('/admin/category/destroy', 'admin/category/destroy.php')->only('admin');
+
+// Prestation
+$router->get('/admin/prestation', 'admin/prestation/show.php')->only('admin');
+$router->get('/admin/prestation/create', 'admin/prestation/create.php')->only('admin');
+$router->get('/admin/prestation/edit', 'admin/prestation/edit.php')->only('admin');
+$router->post('/admin/prestation/store', 'admin/prestation/store.php')->only('admin');
+$router->patch('/admin/prestation/update', 'admin/prestation/update.php')->only('admin');
+$router->delete('/admin/prestation/destroy', 'admin/prestation/destroy.php')->only('admin');

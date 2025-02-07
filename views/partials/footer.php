@@ -16,6 +16,9 @@
                 <li class="nav-item"><a href="/category"
                         class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/category' ? 'link-secondary' : '' ?>">Category</a>
                 </li>
+                <li class="nav-item"><a href="/prestation"
+                        class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/prestation' ? 'link-secondary' : '' ?>">Prestation</a>
+                </li>
             <?php endif; ?>
         </ul>
     </footer>
