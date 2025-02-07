@@ -2,17 +2,17 @@
 
 use Core\App;
 
-$cardId = $_POST['card_id'];
+$ticketId = $_POST['ticket_id'];
 
 $app = new App;
 $db = $app->getDB();
 
 $deleteCardQuery =
-    "DELETE FROM usager
-     WHERE usager.id_carte = :card_id";
+    "DELETE FROM ticket
+     WHERE ticket.id_ticket = :ticket_id";
 
 $tariff = $db->query($deleteCardQuery, [
-    'card_id' => $cardId
+    'ticket_id' => $ticketId
 ]);
 
-redirect('/admin/card');
+redirect('/admin/ticket');
