@@ -41,7 +41,7 @@ foreach ($tariffs as $tariff) {
     }
 }
 
-view('admin/tariff/create.view.php', [
+view('admin/tariff/show.view.php', [
     'tariffs' => $tariffs,
     'colors' => $colors
 ]);
