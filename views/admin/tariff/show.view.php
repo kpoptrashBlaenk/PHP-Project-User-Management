@@ -4,6 +4,13 @@ require basePath('views/partials/header.php');
 ?>
 
 <div class="table-responsive small container px-5">
+    <div class="row ps-5">
+        <div class="col-10"></div>
+        <a href="/admin/tariff/create" class="col-auto ms-4">
+            <button type="button" class="btn btn-primary">Add New Tariff</button>
+        </a>
+    </div>
+
     <table class="table table-sm text-center align-middle">
         <thead>
             <tr>
