@@ -21,6 +21,8 @@ $router->get('/tariff', 'tariff/show.php')->only(['auth']);
 
 // Tariff
 $router->get('/admin/tariff', 'admin/tariff/show.php')->only('admin');
+$router->get('/admin/tariff/create', 'admin/tariff/create.php')->only('admin');
 $router->get('/admin/tariff/edit', 'admin/tariff/edit.php')->only('admin');
+$router->post('/admin/tariff/store', 'admin/tariff/store.php')->only('admin');
 $router->patch('/admin/tariff/update', 'admin/tariff/update.php')->only('admin');
 $router->delete('/admin/tariff/destroy', 'admin/tariff/destroy.php')->only('admin');

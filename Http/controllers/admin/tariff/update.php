@@ -7,12 +7,12 @@ $prestationId = $_POST['prestation_id'];
 $categoryId = $_POST['category_id'];
 $price = $_POST['price_input'];
 
-$app = new App;
-$db = $app->getDB();
-
-$form = TariffForm::validate([
+TariffForm::validate([
     'price' => $price
 ]);
+
+$app = new App;
+$db = $app->getDB();
 
 $updateTariffQuery =
     "UPDATE tarif
