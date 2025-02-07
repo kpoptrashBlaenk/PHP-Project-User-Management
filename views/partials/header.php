@@ -18,6 +18,9 @@
         <!-- Admin Tables -->
         <?php if (isset($_SESSION['user']) && $_SESSION['user']['rights'] === 'Admin'): ?>
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/admin/tariff"
+                        class="nav-link px-2 <?= $_SERVER['REQUEST_URI'] === '/admin/tariff' ? 'link-secondary' : '' ?>">Tariff</a>
+                </li>
             </ul>
 
         <?php endif; ?>

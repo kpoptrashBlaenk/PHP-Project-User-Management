@@ -16,3 +16,6 @@ $router->delete('/session', 'session/destroy.php')->only(['user', 'admin']);
 
 // Tariff
 $router->get('/tariff', 'tariff/show.php')->only(['auth']);
+
+// ### Admin ###
+$router->get('/admin/tariff', 'admin/tariff/create.php')->only('admin');
