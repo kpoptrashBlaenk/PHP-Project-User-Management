@@ -5,36 +5,33 @@ use Core\App;
 $errors = isset($_SESSION['_flashed']) ? $_SESSION['_flashed']['errors'] : [];
 $old = isset($_SESSION['_flashed']) ? $_SESSION['_flashed']['old'] : [];
 
-$cardId = $_GET['card_id'];
+$ticketId = $_GET['ticket_id'];
 
 $app = new App;
 $db = $app->getDB();
 
-// Get selected card
-$getCardQuery =
-    "SELECT usager.id_carte AS card_id,
-            usager.nom AS name,
-            usager.id_categorie AS category_id,
-            usager.montant_caution AS caution,
-            usager.date_carte AS date
-     FROM usager
-     WHERE usager.id_carte = :card_id";
+// Get selected ticket
+$getTicketQuery =
+    "SELECT ticket.id_ticket AS ticket_id,
+            ticket.id_carte AS card_id,
+            ticket.date_achat AS date
+     FROM ticket
+     WHERE ticket.id_ticket = :ticket_id";
 
-$card = $db->query($getCardQuery, [
-    'card_id' => $cardId,
+$ticket = $db->query($getTicketQuery, [
+    'ticket_id' => $ticketId,
 ])->find();
 
-// Get categories
-$getCategoriesQuery =
-    "SELECT categorie.id_categorie AS category_id,
-            categorie.libelle_categorie AS category
-     FROM categorie";
+// Get cards
+$getCardsQuery =
+    "SELECT usager.id_carte AS card_id
+     FROM usager";
 
-$categories = $db->query($getCategoriesQuery)->get();
+$cards = $db->query($getCardsQuery)->get();
 
-view('admin/card/edit.view.php', [
-    'card' => $card,
-    'categories' => $categories,
+view('admin/ticket/edit.view.php', [
+    'ticket' => $ticket,
+    'cards' => $cards,
     'errors' => $errors,
     'old' => $old
 ]);
