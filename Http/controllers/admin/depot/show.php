@@ -5,18 +5,20 @@ use Core\App;
 $app = new App;
 $db = $app->getDB();
 
-$getTariffsQuery =
-    "SELECT tarif.id_prestation AS prestation_id,
-            tarif.id_categorie AS category_id,
-            prestation.type_prestation AS prestation,
+$getDepotQuery =
+    "SELECT depot.id_carte AS card_id,
+            usager.nom AS name,
             categorie.libelle_categorie AS category,
-            tarif.prix AS price
-     FROM tarif
-     NATURAL JOIN prestation
+            usager.montant_caution AS caution,
+            usager.date_carte AS card_date,
+            depot.date_depot AS depot_date,
+            depot.montant AS price
+     FROM depot
+     NATURAL JOIN usager
      NATURAL JOIN categorie
-     ORDER BY prestation";
+     ORDER BY CAST(SUBSTRING(depot.id_carte, 2) AS UNSIGNED)";
 
-$tariffs = $db->query($getTariffsQuery)->get();
+$depots = $db->query($getDepotQuery)->get();
 
 $colors = [];
 $tempColors = [];
@@ -32,16 +34,16 @@ $availableColors = [
 $colors = [];
 $colorIndex = 0;
 
-foreach ($tariffs as $tariff) {
-    $prestation = $tariff['prestation'];
+foreach ($depots as $depot) {
+    $depot = $depot['card_id'];
 
-    if (!isset($colors[$prestation])) {
-        $colors[$prestation] = $availableColors[$colorIndex % count($availableColors)];
+    if (!isset($colors[$depot])) {
+        $colors[$depot] = $availableColors[$colorIndex % count($availableColors)];
         $colorIndex++;
     }
 }
 
-view('admin/tariff/show.view.php', [
-    'tariffs' => $tariffs,
+view('admin/depot/show.view.php', [
+    'depots' => $depots,
     'colors' => $colors
 ]);
