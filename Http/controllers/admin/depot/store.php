@@ -1,74 +1,62 @@
 <?php
 
 use Core\App;
-use Http\Forms\TariffForm;
+use Http\Forms\DepotForm;
 
-$prestationId = $_POST['prestation_input'];
-$categoryId = $_POST['category_input'];
-$price = $_POST['price_input'];
+$card_input = $_POST['card_input'];
+$date_input = $_POST['date_input'];
+$price_input = $_POST['price_input'];
 
 $formAttributes = [
-    'price' => $price
+    'date' => $date_input,
+    'price' => $price_input
 ];
 
-$form = TariffForm::validate($formAttributes);
+$form = DepotForm::validate($formAttributes);
 
 $app = new App();
 $db = $app->getDB();
 
-// Check prestation
-$getPrestationQuery =
+// Check card
+$getCardQuery =
     "SELECT *
-     FROM prestation
-     WHERE prestation.id_prestation = :prestation_id";
+     FROM usager
+     WHERE usager.id_carte = :card_id";
 
-$prestation = $db->query($getPrestationQuery, [
-    'prestation_id' => $prestationId
+$card = $db->query($getCardQuery, [
+    'card_id' => $card_input
 ])->find();
 
-if (!$prestation) {
-    $form::prestationNotExists($formAttributes);
+if (!$card) {
+    $form::cardNotExists($formAttributes);
 }
 
-// Check category
-$getCategoryQuery =
+// Check depot
+$getDepotQuery =
     "SELECT *
-     FROM categorie
-     WHERE categorie.id_categorie = :category_id";
+     FROM depot
+     WHERE depot.id_carte = :card_id AND depot.date_depot = :depot_date AND depot.montant = :price";
 
-$category = $db->query($getCategoryQuery, [
-    'category_id' => $categoryId
+$depot = $db->query($getDepotQuery, [
+    'card_id' => $card_input,
+    'depot_date' => $date_input,
+    'price' => $price_input
 ])->find();
 
-if (!$category) {
-    $form::categoryNotExists($formAttributes);
-}
-
-// Check tariff
-$getTariffQuery =
-    "SELECT *
-     FROM tarif
-     WHERE tarif.id_prestation = :prestation_id AND tarif.id_categorie = :category_id";
-
-$tariff = $db->query($getTariffQuery, [
-    'prestation_id' => $prestationId,
-    'category_id' => $categoryId
-])->find();
-
-if ($tariff) {
-    $form::tariffExists($formAttributes);
+if ($depot) {
+    $form::depotExists($formAttributes);
 }
 
 // Insert
-$insertTariffQuery =
-    "INSERT INTO tarif
-     (tarif.id_prestation, tarif.id_categorie, tarif.prix)
-     VALUES (:prestation_id, :category_id, :price)";
+$insertDepotQuery =
+    "INSERT INTO depot
+     (depot.id_carte, depot.date_depot, depot.montant)
+     VALUES (:card_id, :date, :price)";
 
-$db->query($insertTariffQuery, [
-    'prestation_id' => $prestationId,
-    'category_id' => $categoryId,
-    'price' => $price
+$db->query($insertDepotQuery, [
+    'card_id' => $card_input,
+    'date' => $date_input,
+    'price' => $price_input
 ]);
 
-redirect('/admin/tariff');
+redirect('/admin/depot');

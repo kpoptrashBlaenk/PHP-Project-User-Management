@@ -10,34 +10,29 @@ class DepotForm extends BaseForm
     {
         $this->attributes = $attributes;
 
+        if (!Validator::date($this->attributes['date'])) {
+            $this->errors['date'] = 'Date not valid';
+        }
+
         if (!Validator::number($this->attributes['price'])) {
             $this->errors['price'] = 'Price not valid';
         }
     }
 
-    public static function prestationNotExists(array $attributes)
+    public static function cardNotExists(array $attributes)
     {
         $instance = new static($attributes);
 
-        $instance->errors['prestation'] = 'Prestation doesn\'t exists';
+        $instance->errors['card'] = 'Card doesn\'t exist';
 
         return $instance->throw();
     }
 
-    public static function categoryNotExists(array $attributes)
+    public static function depotExists(array $attributes)
     {
         $instance = new static($attributes);
 
-        $instance->errors['category'] = 'Category doesn\'t exists';
-
-        return $instance->throw();
-    }
-
-    public static function tariffExists(array $attributes)
-    {
-        $instance = new static($attributes);
-
-        $instance->errors['all'] = 'Tariff already exists';
+        $instance->errors['all'] = 'Depot already exists';
 
         return $instance->throw();
     }
