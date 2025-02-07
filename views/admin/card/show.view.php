@@ -23,7 +23,7 @@ require basePath('views/partials/header.php');
         </thead>
         <tbody>
             <?php foreach ($cards as $card): ?>
-                <form action="/admin/category/edit" method="GET">
+                <form action="/admin/card/edit" method="GET">
                     <input type="hidden" name="card_id" value="<?= $card['card_id'] ?>">
                     <tr class="table-<?= $colors[$card['card_id']] ?>">
                         <td><?= $card['card_id'] ?></td>

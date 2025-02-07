@@ -10,16 +10,24 @@ class CardForm extends BaseForm
     {
         $this->attributes = $attributes;
 
-        if (!Validator::string($this->attributes['prestation'])) {
-            $this->errors['prestation'] = 'Prestation not valid';
+        if (!Validator::string($this->attributes['name'])) {
+            $this->errors['name'] = 'Name not valid';
+        }
+
+        if (!Validator::number($this->attributes['caution'])) {
+            $this->errors['caution'] = 'Caution not valid';
+        }
+
+        if (!Validator::string($this->attributes['date'])) {
+            $this->errors['date'] = 'Date not valid';
         }
     }
 
-    public static function prestationExists(array $attributes)
+    public static function categoryNotExists(array $attributes)
     {
         $instance = new static($attributes);
 
-        $instance->errors['prestation'] = 'Prestation already exists';
+        $instance->errors['category'] = 'Category doesn\'t exist';
 
         return $instance->throw();
     }

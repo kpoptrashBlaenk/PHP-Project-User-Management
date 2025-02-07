@@ -21,7 +21,7 @@ require basePath('views/partials/header.php');
             <label for="category_input" class="form-label">Category</label>
             <select class="form-select <?= isset($errors['category']) ? 'is-invalid' : '' ?>" id="category_input"
                 name="category_input">
-                <option value="" selected>Choose a prestation...</option>
+                <option value="" selected>Choose a category...</option>
                 <?php foreach ($categories as $category): ?>
                     <option value="<?= $category['category_id'] ?>"> <?= $category['category'] ?></option>
                 <?php endforeach; ?>
