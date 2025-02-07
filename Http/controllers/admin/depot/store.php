@@ -35,12 +35,11 @@ if (!$card) {
 $getDepotQuery =
     "SELECT *
      FROM depot
-     WHERE depot.id_carte = :card_id AND depot.date_depot = :depot_date AND depot.montant = :price";
+     WHERE depot.id_carte = :card_id AND depot.date_depot = :depot_date";
 
 $depot = $db->query($getDepotQuery, [
     'card_id' => $card_input,
-    'depot_date' => $date_input,
-    'price' => $price_input
+    'depot_date' => $date_input
 ])->find();
 
 if ($depot) {

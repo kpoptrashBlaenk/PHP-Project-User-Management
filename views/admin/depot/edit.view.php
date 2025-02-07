@@ -8,7 +8,6 @@ require basePath('views/partials/header.php');
         <input hidden name="_method" value="PATCH" id="method">
         <input hidden name="card_id" value="<?= $depot['card_id'] ?>">
         <input hidden name="date" value="<?= $depot['date'] ?>">
-        <input hidden name="price" value="<?= $depot['price'] ?>">
 
         <div class="col-md-4">
             <label for="card_input" class="form-label">Card</label>
@@ -42,6 +41,8 @@ require basePath('views/partials/header.php');
             <button class="btn btn-primary" type="Submit">Save</button>
             <button id="deleteButton" class="btn btn-danger" type="submit">Delete</button>
         </div>
+
+        <div class="text-danger ms-2 mb-2"><?= $errors['all'] ?? '' ?></div>
     </form>
 </div>
 
