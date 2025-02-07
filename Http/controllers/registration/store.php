@@ -40,7 +40,7 @@ if ($user) {
 }
 
 // Add user
-$insertUserQuery = "INSERT INTO users(prenom, nom, mail, password, droits) VALUES(:firstName, :lastName, :email, :password, :rights)";
+$insertUserQuery = "INSERT INTO users(prenom, nom, mail, password, id_droits) VALUES(:firstName, :lastName, :email, :password, :rights)";
 
 $db->query($insertUserQuery, [
     'firstName' => $firstName,

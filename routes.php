@@ -58,3 +58,19 @@ $router->get('/admin/user/edit', 'admin/user/edit.php')->only('admin');
 $router->post('/admin/user/store', 'admin/user/store.php')->only('admin');
 $router->patch('/admin/user/update', 'admin/user/update.php')->only('admin');
 $router->delete('/admin/user/destroy', 'admin/user/destroy.php')->only('admin');
+
+// Ticket
+$router->get('/admin/ticket', 'admin/ticket/show.php')->only('admin');
+$router->get('/admin/ticket/create', 'admin/ticket/create.php')->only('admin');
+$router->get('/admin/ticket/edit', 'admin/ticket/edit.php')->only('admin');
+$router->post('/admin/ticket/store', 'admin/ticket/store.php')->only('admin');
+$router->patch('/admin/ticket/update', 'admin/ticket/update.php')->only('admin');
+$router->delete('/admin/ticket/destroy', 'admin/ticket/destroy.php')->only('admin');
+
+// Depot
+$router->get('/admin/depot', 'admin/depot/show.php')->only('admin');
+$router->get('/admin/depot/create', 'admin/depot/create.php')->only('admin');
+$router->get('/admin/depot/edit', 'admin/depot/edit.php')->only('admin');
+$router->post('/admin/depot/store', 'admin/depot/store.php')->only('admin');
+$router->patch('/admin/depot/update', 'admin/depot/update.php')->only('admin');
+$router->delete('/admin/depot/destroy', 'admin/depot/destroy.php')->only('admin');
