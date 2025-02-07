@@ -12,7 +12,8 @@ $db = $app->getDB();
 
 // Get selected card
 $getCardQuery =
-    "SELECT usager.nom AS name,
+    "SELECT usager.id_carte AS card_id,
+            usager.nom AS name,
             usager.id_categorie AS category_id,
             usager.montant_caution AS caution,
             usager.date_carte AS date

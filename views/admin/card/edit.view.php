@@ -6,7 +6,7 @@ require basePath('views/partials/header.php');
 <div class="mt-5 pt-5 container">
     <form class="row g-3" action="/admin/card/update" method="POST">
         <input hidden name="_method" value="PATCH" id="method">
-        <input hidden name="card_id" value="<?= $category['card_id'] ?>">
+        <input hidden name="card_id" value="<?= $card['card_id'] ?>">
 
         <div class="col-md-3">
             <label for="name_input" class="form-label">Name</label>
